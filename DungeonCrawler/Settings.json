@@ -1,0 +1,15 @@
+['Wooden_Sword', 'Iron_Sword', 'Bandage', 'Medkit', 'The_Excalibur', 'Katana', 'Templar_Long_Sword', 'A_Dagger']
+[5, 10, 5, 'max', 'max', 20, 40, 10]
+[10, 15, 25, 'max', 'max', 25, 60, 20]
+['attack', 'attack', 'heal', 'heal', 'attack', 'attack', 'attack', 'attack']
+['Common', 'Uncommon', 'Common', 'Rare', 'Unobtainable', 'Rare', 'Legendary', 'Common']
+['Medkit', 'Iron_Sword', 'Katana', 'A_Dagger']
+[50, 200, 500, '100']
+['A_Goblin', 'An_Werewolf', 'A_Wild_Wolf', 'A_Moose', 'A_Tiger_Made_From_Wood', 'A_Bandit', 'An_Assassin', 'An_Orc']
+['lurks', 'bolts', 'jumps', 'leaps', 'rushes']
+['You_were_walking_through_the_woods', 'You_hear_a_rustling_in_a_bush', 'You_see_a_figure_in_the_dense_fog', 'You_go_through_an_abandoned_village']
+['Big_Boy_Billy', 'Karl_The_Weeser', 'Arthur_Just_Arthur']
+
+# Delete this file for the orgin Settings
+# You may tweak this to your own story have fun!
+# Add the Game, Saves, Backups, and Settings into one directory and shortcut the game to your Desktop!
