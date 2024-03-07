@@ -218,7 +218,6 @@ def StartShop(DisplayedShop : list):
     DisplayedShop = list(set(DisplayedShop))
     DisplayedShop = [item for item in DisplayedShop if item.Name not in [item.Name for item in Player.Inventory]]
     Saved = False
-    Player.MaxHealth = Player.Level * 50 + 50
 
     while 1:
         ItemChoice = ''
