@@ -332,5 +332,5 @@ if Player.Coins == 0 and Player.Level == 1 and Player.XP == 0:
     StartShop(choices(Shop, k=2) + [C_Items.Sword])
     Encounter(NPCS.Enemies.Skeleton)
 while 1:
-    StartShop(choices(Shop, k=3))
+    StartShop(choices(Shop, k=randint(3, 5))
     Encounter(choice(Enemies[Clamp(Player.Level, 1, 21)]))
