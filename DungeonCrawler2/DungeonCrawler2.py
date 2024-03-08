@@ -41,7 +41,7 @@ class Items:
         # Swords
         self.Basic_Sword = Item(0, 2, 10, 1, "Basic Sword")
         self.Sword = Item(5, 5, 15, 3, "Sword")
-        self.Long_Sword = Item(25, 10, 20, 3.5, "Long Sword")
+        self.Long_Sword = Item(25, 10, 25, 3.5, "Long Sword")
         self.Katana = Item(20, 10, 20, 1, "Katana")
         self.Great_Sword = Item(50, 30, 40, 10, "Great Sword")
         self.Thunder_Sword = Item(55, 25, 30, 8, "Thunder Sword")
@@ -116,10 +116,12 @@ class NPCS:
         Thunder_Demon = NPC("Thunder Demon", C_Items.Thunder_Sword, 200, 30, 40)
         Angel = NPC("Angel", C_Items.Holy_Sword, 250, 10, 30)
         Vampire = NPC("Vampire", C_Items.Blood_Dagger, 160, 20, 25)
+        King_Arthur = NPC("King Arthur", C_Items.The_Excalibur, 1000, 50, 500)
 
 
 def AddItemToInventory(plr: Character, item: Item):
-    plr.Inventory.append(copy.deepcopy(item))
+    if item.Name not in [item.Name for item in Player.Inventory]:
+        plr.Inventory.append(copy.deepcopy(item))
     
 def CheckDeath(target : NPC):
     if target.Health <= 0:
@@ -145,6 +147,9 @@ def QueueDeath(Enemy : NPC):
             print("Player Leveled UP!")
         input("Player Max Health!")
         Player.Health = Player.MaxHealth
+        if Enemy.Name == NPCS.Enemies.King_Arthur.Name:
+            input("YOU HAVE SLAYED ARTHUR, YOU NOW GAIN THE THE EXCALIBUR.")
+            AddItemToInventory(Player, C_Items.The_Excalibur)
         return True
     
     return False
@@ -211,7 +216,7 @@ Enemies= {
     **dict.fromkeys([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [NPCS.Enemies.Skeleton, NPCS.Enemies.Zombie, NPCS.Enemies.Orc]),
     **dict.fromkeys([11, 12 , 13, 14, 15], [NPCS.Enemies.Skeleton, NPCS.Enemies.Zombie, NPCS.Enemies.Orc, NPCS.Enemies.Wizard, NPCS.Enemies.Giant_Spider, NPCS.Enemies.Ghost]),
     **dict.fromkeys([16, 17, 18, 19, 20], [NPCS.Enemies.Skeleton, NPCS.Enemies.Zombie, NPCS.Enemies.Orc, NPCS.Enemies.Wizard, NPCS.Enemies.Giant_Spider, NPCS.Enemies.Ghost, NPCS.Enemies.Fire_Elemental, NPCS.Enemies.Assassin, NPCS.Enemies.Ice_Golem]),
-    **dict.fromkeys([21], [NPCS.Enemies.Skeleton, NPCS.Enemies.Zombie, NPCS.Enemies.Orc, NPCS.Enemies.Wizard, NPCS.Enemies.Giant_Spider, NPCS.Enemies.Ghost, NPCS.Enemies.Fire_Elemental, NPCS.Enemies.Assassin, NPCS.Enemies.Ice_Golem, NPCS.Enemies.Thunder_Demon, NPCS.Enemies.Angel, NPCS.Enemies.Vampire])
+    **dict.fromkeys([21], [NPCS.Enemies.Skeleton, NPCS.Enemies.Zombie, NPCS.Enemies.Orc, NPCS.Enemies.Wizard, NPCS.Enemies.Giant_Spider, NPCS.Enemies.Ghost, NPCS.Enemies.Fire_Elemental, NPCS.Enemies.Assassin, NPCS.Enemies.Ice_Golem, NPCS.Enemies.Thunder_Demon, NPCS.Enemies.Angel, NPCS.Enemies.Vampire, NPCS.Enemies.King_Arthur])
 }
 
 def StartShop(DisplayedShop : list):
@@ -261,6 +266,7 @@ def StartShop(DisplayedShop : list):
                     input(e)
             elif ItemChoice == "save":
                 Save()
+                Saved = True
             else:
                 if ItemChoice.isdigit():
                     ItemChoice = DisplayedShop[int(ItemChoice)]
@@ -332,5 +338,5 @@ if Player.Coins == 0 and Player.Level == 1 and Player.XP == 0:
     StartShop(choices(Shop, k=2) + [C_Items.Sword])
     Encounter(NPCS.Enemies.Skeleton)
 while 1:
-    StartShop(choices(Shop, k=randint(3, 5))
+    StartShop(choices(Shop, k=randint(3, 5)))
     Encounter(choice(Enemies[Clamp(Player.Level, 1, 21)]))
